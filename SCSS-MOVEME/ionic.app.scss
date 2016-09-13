@@ -1,0 +1,47 @@
+$SIDEMENU_TOP: #444;
+$SIDEMENU_BOTTOM: #444;
+$SIDEMENU_TRANSPARENCY: rgba(255,255,255,0.4);
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+@import "../www/lib/ionic/scss";
+@import 'https: //fonts.googleapis.com/css?family=Baloo+Paaji';
+.side-menu-item {
+	font-family: 'Baloo Paaji', cursive;
+	background: none;
+	color: yellow;
+	font-weight: 500;
+	border: 0px;
+	.item-content {
+		background: none;
+		&.activated {
+			background: $SIDEMENU_TRANSPARENCY;
+		}
+		
+	}
+}
+.side-menu-gradient {
+	background: -webkit-linear-gradient(left top, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+	background: -o-linear-gradient(bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+	background: -moz-linear-gradient(bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+	background: linear-gradient(to bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+}
+
+.profile-image {
+	img {
+		border-radius: 50%;
+		margin: 10px;
+		border: 4px solid $SIDEMENU_TRANSPARENCY;
+	}
+	
+}
+body.platform-android {
+	font-family: Roboto, sans-serif;
+}
+
+.ionic-body.platform-android {
+	font-family: Roboto, sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.tab-item,input,button,select,textarea {
+	font-family: inherit;
+}
+
