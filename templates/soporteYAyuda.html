@@ -4,16 +4,15 @@
         <form id="soporteYAyuda-form9" class="list">
             <label class="item item-select" id="soporteYAyuda-select7">
                 <span class="input-label">Motivo:</span>
-                <select>
+                <select ng-model="sopor.sel">
                     <option>No ingresan los datos</option>
                     <option>aparecen mensajes de error</option>
-                    <option>NO tengo conexion</option>
                 </select>
             </label>
             <label class="item item-input" id="soporteYAyuda-textarea2">
-                <span class="input-label">Escrib su comentario aqui</span><textarea placeholder=""></textarea>
+                <span class="input-label" ng-model="sopor.comen"></span><textarea placeholder="Escriba su comentario aqui"></textarea>
             </label>
         </form>
-        <button id="soporteYAyuda-button17" class="button button-assertive  button-block">ENviar</button>
+        <button id="soporteYAyuda-button17" class="button button-assertive  button-block" ng-click="clkenviar(sel,comen)">Enviar</button>
     </ion-content>
 </ion-view>
