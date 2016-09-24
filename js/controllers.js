@@ -81,16 +81,18 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('soporteYAyudaCtrl', ['$scope', '$stateParams', '$cordovaEmailComposer', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('soporteYAyudaCtrl', ['$scope', '$stateParams', '$cordovaEmailComposer', '$location', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$cordovaEmailComposer) {
+function ($scope, $stateParams,$cordovaEmailComposer,$location) {
 
-$scope.clkenviar=function(_sel,_comen)
+$scope.frmsopor={};
+
+$scope.clkenviar=function(frmsopor)
 {
-	console.log(localStorage.getItem('sel'));
-	localStorage.setItem('sel', _sel);
-	localStorage.setItem('comen', _comen);
+
+	console.log(frmsopor.sel.$modelValue);
+	console.log(frmsopor.comen.$modelValue);	
 
 	document.addEventListener("deviceready", function () {
 
@@ -102,8 +104,8 @@ $scope.clkenviar=function(_sel,_comen)
 
 		  var email = {
 		    to: 'gerencia@aeromobilesoft.com.co',
-		    subject: localStorage.getItem('sel'),
-		    body: localStorage.getItem('comen'),
+		    subject: frmsopor.sel.$modelValue,
+		    body: frmsopor.comen.$modelValue,
 		    isHtml: true
 		  };
 

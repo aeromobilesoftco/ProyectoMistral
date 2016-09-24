@@ -1,18 +1,20 @@
 <ion-view title="Soporte y ayuda" id="page10" style="">
     <ion-content padding="true" class="has-header">
         <h3 id="soporteYAyuda-heading3" style="color: rgb(0, 0, 0);">¿Tienes problemas? escribenos</h3>
-        <form id="soporteYAyuda-form9" class="list">
+        <form id="frmsopor" name="frmsopor" class="list">
             <label class="item item-select" id="soporteYAyuda-select7">
                 <span class="input-label">Motivo:</span>
-                <select ng-model="sopor.sel">
+                <select name="sel" id="sel" ng-model="sopor.sel">
                     <option>No ingresan los datos</option>
+                    <option>No encuentro mis datos</option>
                     <option>aparecen mensajes de error</option>
                 </select>
             </label>
             <label class="item item-input" id="soporteYAyuda-textarea2">
-                <span class="input-label" ng-model="sopor.comen"></span><textarea placeholder="Escriba su comentario aqui"></textarea>
+                <span class="input-label"></span>
+                <textarea name="comen" id="comen" placeholder="Escriba su comentario aqui" ng-model="sopor.comen"></textarea>
             </label>
         </form>
-        <button id="soporteYAyuda-button17" class="button button-assertive  button-block" ng-click="clkenviar(sel,comen)">Enviar</button>
+        <button id="soporteYAyuda-button17" class="button button-assertive  button-block" ng-click="clkenviar(frmsopor)">Enviar</button>
     </ion-content>
 </ion-view>
