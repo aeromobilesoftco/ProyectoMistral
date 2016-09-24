@@ -81,10 +81,10 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('soporteYAyudaCtrl', ['$scope', '$stateParams', '$cordovaEmailComposer', '$location', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('soporteYAyudaCtrl', ['$scope', '$stateParams', '$cordovaEmailComposer', '$location', '$cordovaDevice', '$cordovaDialogs',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$cordovaEmailComposer,$location) {
+function ($scope, $stateParams,$cordovaEmailComposer,$location,$cordovaDevice,$cordovaDialogs) {
 
 $scope.frmsopor={};
 
@@ -92,9 +92,35 @@ $scope.clkenviar=function(frmsopor)
 {
 
 	console.log(frmsopor.sel.$modelValue);
-	console.log(frmsopor.comen.$modelValue);	
+	console.log(frmsopor.comen.$modelValue);
 
+	var selen=frmsopor.sel.$modelValue;
+	var comenta=frmsopor.comen.$modelValue;
+
+	if (selen==null || comenta==null) 
+	{
+		document.addEventListener("deviceready", function () 
+		{
+		  $cordovaDialogs.alert('Debe seleccionar un motivo y escribir un texto', 'Atencion!!', 'Aceptar')
+		    .then(function() {
+		      // callback success
+		    });
+		}, false);
+	}
+	else
+	{
 	document.addEventListener("deviceready", function () {
+
+	// Muestro las caracteristicas del equipo que me reporta la falla
+	// Dispositivo
+	var model = $cordovaDevice.getModel();
+	var plata = $cordovaDevice.getPlatform();
+	var sisop = $cordovaDevice.getVersion();
+    	
+    // Declaro las variables con Scope y los recupero con getitem
+    $scope.dis=model;
+    $scope.mar=plata;
+    $scope.so=sisop;
 
 		 $cordovaEmailComposer.isAvailable().then(function() {
 		   // is available
@@ -105,14 +131,22 @@ $scope.clkenviar=function(frmsopor)
 		  var email = {
 		    to: 'gerencia@aeromobilesoft.com.co',
 		    subject: frmsopor.sel.$modelValue,
-		    body: frmsopor.comen.$modelValue,
+		    body: '<h2>Hola!!!</h2>'
+		    + '<h3>'+ 'Lamentamos que estes teniendo estos inconvenientes. Nos reportas que tienes inconvenientes con: ' +'</h3>'
+		    + '<h3>'+ frmsopor.comen.$modelValue +'</h3>'
+		    + ' <h1>Informacion Dispositivo</h1>' 
+		    + '<h3>'+' Modelo:' +$scope.dis  +'</h3>'
+		    + '<h3>'+' Sistema operativo: '+ $scope.mar +'</h3>'
+		    + '<h3>'+' Version SO: '+$scope.so +'</h3>'
+		    + '<h5><font color="red"> Atencion: AeroMobileSoft En cumplimiento de la ley 1582 de 2012. La cual establece la privacidad,proteccion y buen manejo de los datos. queda absolutamente comprometida en que los datos aqui suministrador por voluntad propia del usuario. solo seran usados para brindar mejoramiento y mantenimiento de dicha obligacion. El usuario acepta VOLUNTARIAMENTE entregar esta informacion.' + '</h5>',
 		    isHtml: true
 		  };
 
 		 $cordovaEmailComposer.open(email).then(null, function () {
 		   // user cancelled email
 		 });
-	}, false);	
+	}, false);		
+	}
 }
 
 }])

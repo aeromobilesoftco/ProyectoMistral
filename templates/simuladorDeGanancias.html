@@ -1,11 +1,11 @@
 <ion-view title="Simulador de ganancias" id="page8" style="">
     <ion-content padding="true" class="has-header">
+    <h3>Por favor rellene los datos</h3>
         <form id="simuladorDeGanancias-form7" name="simuladorDeGanancias-form7" class="list">
             <label class="item item-input" id="simuladorDeGanancias-input15">
                 <span class="input-label">Inversion:</span>
-                <input name="valin" placeholder="Valor inversion" type="number" ng-model="simgan.valin" ng-required="true">
-                    <span style="color:red" ng-show="simuladorDeGanancias-form7.valin.$dirty && simuladorDeGanancias-form7.valin.$error.required" >El valor de inversion es requerido</span>
-<span style="color:red" ng-show="simuladorDeGanancias-form7.valin.$error.valin">El valor de inversion es requerido</span>
+                <input id="valin" name="valin" placeholder="Valor inversion" type="number" ng-model="simgan.valin" ng-required="true" title="Debe digitar el valor del gasto.">
+
             </label>
             <label class="item item-input" id="simuladorDeGanancias-input16">
                 <span class="input-label">Porcentaje:</span>
@@ -33,9 +33,9 @@
                 </span>
             </label>
 
-            <button class="button button-full button-assertive" ng-click="clksimlim()">
+        <button class="button button-full button-assertive" ng-click="clksimlim()">
                 Limpiar
-            </button>                
+        </button>                
 
         </form>
     </ion-content>
