@@ -1,6 +1,6 @@
-angular.module('app.controllers', ['ngCordova'])
+angular.module('app.controllers', ['ngCordova','app.services'])
   
-.controller('inicioMistralEconoCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('inicioMistralEconoCtrl', ['$scope', '$stateParams',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
@@ -29,14 +29,43 @@ function ($scope, $stateParams) {
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
 
+$scope.frmsopor={};
+
+$scope.clkblanso=function(frmsopor){
+	console.log(frmsopor.sel.$modelValue);
+	console.log(frmsopor.comen.$modelValue);
+
+	var selen=frmsopor.sel.$modelValue;
+	var comenta=frmsopor.comen.$modelValue;
+
+	selen="";
+	comenta="";
+}
 
 }])
    
-.controller('mistralEconoCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('mistralEconoCtrl', ['$scope', '$stateParams', '$cordovaFacebook', '$cordovaDialogs', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+function ($scope, $stateParams,$cordovaFacebook,$cordovaDialogs) {
 
+$scope.clkinicio=function()
+{
+
+		document.addEventListener("deviceready", function () 
+		{
+		  $cordovaFacebook.login(["public_profile", "email", "user_friends"])
+		    .then(function(success) {
+
+				  $cordovaDialogs.alert('Dato retornado: ', 'Atencion!!', 'Aceptar')
+				    .then(function() {
+				      // callback success
+				    });
+		    }, function (error) {
+		      // error
+		    });
+		}, false);	
+}
 
 }])
    

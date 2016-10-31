@@ -12,6 +12,7 @@
         <ion-header-bar class="bar-dark">
             <div class="title">Opciones</div>
         </ion-header-bar>
+        <form id="frmopcion" name="frmopcion">
         <ion-content padding="false" class="side-menu-left has-header side-menu-gradient">
             <div class="spacer" style="width: 303px; height: 12px;"></div>
             <div class="profile-image">
@@ -27,8 +28,9 @@
                 <ion-item id="opciones-list-item5" ui-sref="opciones.registrarDeudas" menu-close="" class="side-menu-item" style="">Registrar Deudas</ion-item>
                 <ion-item id="opciones-list-item11" ui-sref="opciones.simuladorDeGanancias" menu-close="" class="side-menu-item" style="">Simulador de ganancia</ion-item>
                 <ion-item id="opciones-list-item6" ui-sref="opciones.informes" menu-close="" class="side-menu-item" style="">informes</ion-item>
-                <ion-item id="opciones-list-item12" ui-sref="opciones.soporteYAyuda" menu-close="" class="side-menu-item" style="">Soporte y ayuda</ion-item>
+                <ion-item id="opciones-list-item12" ui-sref="opciones.soporteYAyuda" menu-close="" class="side-menu-item" style="" ng-click="clkblanso(frmsopor)">Soporte y ayuda</ion-item>
             </ion-list>
         </ion-content>
+        </form>
     </ion-side-menu>
 </ion-side-menus>
