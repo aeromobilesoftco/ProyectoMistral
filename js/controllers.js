@@ -24,11 +24,31 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('opcionesCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('opcionesCtrl', ['$scope', '$stateParams','$cordovaFacebook', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+function ($scope, $stateParams,$cordovaFacebook) {
 
+	document.addEventListener("deviceready", function () {
+	  $cordovaFacebook.api("me/?fields=id,email,name", ["public_profile","email"])
+	    .then(function(success) {
+	      // success
+	      	$scope.idface=success.id;
+	      	$scope.nameface=success.name;
+	      	$scope.fotoface='http://graph.facebook.com/'+$scope.idface+'/picture?type=large';
+	      	$scope.email=success.email;
+	      	$cordovaDialogs.alert('Id: '+$scope.idface +' Nombre:'+$scope.nameface+' Imagen:'+$scope.fotoface+' email:'+$scope.email, 'Atencion!!', 'Aceptar')
+			 .then(function() {
+			// callback success
+			});
+	    }, function (error) {
+	      	 $cordovaDialogs.alert('Algo paso', 'Atencion!!', 'Aceptar')
+			 .then(function() {
+			// callback success
+			});
+	    });	
+	}, false);
+	
 $scope.frmsopor={};
 
 $scope.clkblanso=function(frmsopor){
@@ -44,27 +64,24 @@ $scope.clkblanso=function(frmsopor){
 
 }])
    
-.controller('mistralEconoCtrl', ['$scope', '$stateParams', '$cordovaFacebook', '$cordovaDialogs', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('mistralEconoCtrl', ['$scope', '$stateParams', '$cordovaDialogs','$cordovaFacebook',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$cordovaFacebook,$cordovaDialogs) {
+function ($scope, $stateParams,$cordovaDialogs,$cordovaFacebook) {
 
 $scope.clkinicio=function()
 {
-
-		document.addEventListener("deviceready", function () 
-		{
+	document.addEventListener("deviceready", function () {
 		  $cordovaFacebook.login(["public_profile", "email", "user_friends"])
 		    .then(function(success) {
 
-				  $cordovaDialogs.alert('Dato retornado: ', 'Atencion!!', 'Aceptar')
-				    .then(function() {
-				      // callback success
-				    });
 		    }, function (error) {
-		      // error
-		    });
-		}, false);	
+		      	 $cordovaDialogs.alert('Ha ocurrido un error conectando con el servicio. Por favor verifique su conexion de internet.', 'Atencion!!', 'Aceptar')
+				 .then(function() {
+				// callback success
+				});
+		    });		
+	}, false);
 }
 
 }])
